@@ -1,78 +1,84 @@
-# DiscordBotPython
+# WalletWatcher - A Discord Ethereum Bot
 
-WalletWatcher is a Discord bot that tracks Ethereum addresses and notifies users about new transactions. It's perfect for monitoring your Ethereum wallets directly from Discord.
+WalletWatcher is a Discord bot designed to track and notify users about transactions related to their Ethereum addresses. Perfect for monitoring your Ethereum wallets directly from Discord.
 
-## What does it do?
+## Description
 
-This bot allows users to add Ethereum addresses, start and stop tracking them, check the balance of addresses and tokens, get the transaction history, and more. Every time a new transaction related to a tracked address occurs, the bot sends a message with the transaction details.
+The bot has the capability to track up to 10 Ethereum addresses per user. Each address can be given an alias for easier management. For example, you can give the alias "myWallet" to your Ethereum address, and use this alias for all future commands, making it easier to remember and manage your addresses.
 
-## Dependencies
+Beyond tracking addresses, WalletWatcher provides an array of functionalities including retrieving the balance of an Ethereum address or ERC20 token, getting the transaction count of an address, estimating the gas required to send a transaction, and more. It can also provide network status checks, such as the latest block number and the current average gas price.
 
-This bot is built in Python, using the `discord.py` and `web3.py` libraries. 
+To enhance interaction, it includes witty responses that add a fun touch to the notifications and responses it sends.
 
-- `discord.py` is a modern, easy-to-use, feature-rich, and async-ready API wrapper for Discord written in Python.
+## Features
 
-- `web3.py` is a Python library for interacting with Ethereum. It's commonly used for smart contracts and decentralized applications (dApps).
+    Track up to 10 Ethereum addresses per user, each with its own alias.
+    Get notified about transactions involving your tracked addresses.
+    Check the balance of your Ethereum addresses.
+    Check the balance of ERC20 tokens.
+    Get the transaction count of your addresses.
+    Estimate gas required to send a transaction.
+    Retrieve the details of a specific block in the Ethereum blockchain.
+    Get network status like the latest block number and the current average gas price.
+    Add and track ERC20 token contract addresses.
+    All interactions are made simple through commands in Discord.
 
 ## Setup
 
-To set up this project, you'll need to install Python, set up a virtual environment, install the necessary packages, and configure some environment variables.
+To set up this project, you need Python, a virtual environment, necessary packages, and environment variables.
 
-1. **Install Python**
+## Install Python
 
-   Make sure you have Python installed on your machine. You can download it from the [official website](https://www.python.org/downloads/). This project requires Python 3.6 or higher.
+Install Python on your machine. Download it from the official website. This project requires Python 3.6 or higher.
 
-2. **Set up a virtual environment** (Optional, but recommended)
+## Set up a virtual environment (Optional, but recommended)
 
-   It's a good practice to create a virtual environment for each Python project to manage dependencies separately. You can create a virtual environment using the venv module:
+Create a virtual environment for the project to manage dependencies. You can create it using the venv module:
 
-   python3 -m venv env
-   
-   To activate the environment, run:
+bash
 
-- Windows: `.\env\Scripts\activate`
-- Linux/macOS: `source env/bin/activate`
+python3 -m venv env
 
-3. **Install packages**
+Activate the environment:
 
-With your virtual environment activated, install the `discord.py` and `web3.py` libraries using pip:
+    Windows: .\env\Scripts\activate
+    Linux/macOS: source env/bin/activate
 
-python3 -m pip install web3
-python3 -m pip install discord.py
+## Install packages
 
-OR if that doesn't work, depending on your python version
+With the virtual environment activated, install the discord.py and web3.py libraries using pip:
 
-pip install discord.py
-pip install web3
+python3 -m pip install discord.py web3
 
+## Configure environment variables
 
-4. **Configure environment variables**
+Set two environment variables: DISCORD_BOT_TOKEN and INFURA_URL.
 
-This project requires two environment variables: `DISCORD_BOT_TOKEN` and `INFURA_URL`.
+    DISCORD_BOT_TOKEN: Your Discord bot token. Get it from the Discord Developer Portal by creating a new bot.
+    INFURA_URL: The URL of your Ethereum node. Get it from Infura by creating a new project. Choose the Ethereum network.
 
-- `DISCORD_BOT_TOKEN`: The token of your Discord bot. You can get this from the [Discord Developer Portal](https://discord.com/developers/applications) by creating a new bot.
-
-- `INFURA_URL`: The URL of your Ethereum node. You can get this from [Infura](https://infura.io/) by creating a new project. Make sure to choose the Ethereum network.
-
-You can set these environment variables in your terminal session or add them to a `.env` file if you're using a package like python-dotenv.
+You can set these environment variables in your terminal session or add them to a .env file if you're using the python-dotenv package.
 
 ## Running the bot
 
-With everything set up, you can now run the bot:
+Run the bot with the command:
 
 python walletwatcher.py
 
-The bot will now connect to your Discord server and start responding to commands.
+The bot now connects to your Discord server and starts responding to commands.
 
 ## Usage
 
-The bot provides several commands for users:
+Use the !help command to get a full list of commands and their descriptions. Here are some examples:
 
-- `!add [alias] [address]`: Adds an Ethereum address to track with an alias.
+    !add [alias] [address]: Add an Ethereum address to track with an alias.
+    !remove [alias]: Remove a tracked Ethereum address by its alias.
+    !list: List all your Ethereum addresses and their tracking status.
+    !balance [alias]: Check the balance of an Ethereum address by its alias.
+    !addtoken [alias] [address]: Add an ERC20 token contract address to track with an alias.
+    !tokenbalance [address_alias] [token_alias]: Check the balance of a specific ERC20 token for an Ethereum address.
 
-- `!remove [alias]`: Removes an Ethereum address by its alias.
-
-- `!list`: Lists all your Ethereum addresses and shows which are being tracked.
+Remember, you can track up to 10 Ethereum addresses and 10 token contract addresses, each with its own alias for easy interaction.
 
 - `!balance [alias]`: Checks the balance of an Ethereum address by its alias.
 
@@ -80,3 +86,20 @@ The bot provides several commands for users:
 
 Use the `!help` command to get a full list of commands and their descriptions.
 
+# Potential Improvements and Issues
+
+    Enhanced Error Handling: Developers could work on implementing more comprehensive error handling to make the bot more robust and reliable. This could include handling more specific exceptions, improved logging, or even user-friendly error messages.
+
+    Implement Data Persistence: Right now, all the data is lost when the bot is restarted. Implementing a database or some form of persistent storage would be a significant improvement. This could be done using a variety of technologies, such as SQLite for a lightweight solution, or a more robust database system like PostgreSQL for larger applications.
+
+    Testing Suite: There currently aren't any tests for the bot. Developers could create a suite of unit tests to ensure that all commands and functions work as expected. This would make the bot more reliable and easier to maintain and upgrade.
+
+    Security Enhancements: While the bot is relatively safe as it is, there's always room for improvement in security. Developers could look into ways to further sanitize inputs, implement rate limiting to prevent abuse, or audit the code for potential security vulnerabilities.
+
+    User Experience (UX) Improvements: The bot could be more interactive. Developers could implement embeds for better-looking responses, or add reactions for simple user interactions. They could also make the help command more detailed or easier to understand.
+
+    Command Extensions: Developers could add new commands or features to the bot. This could include integrating with other Ethereum services, adding support for more types of transactions, or even allowing users to interact with smart contracts directly from Discord.
+
+    Code Refactoring: The code could be refactored to make it more efficient, readable, or maintainable. This could include things like separating the code into more files, improving the structure of the code, or even just cleaning up and commenting the code better.
+
+Please remember this is just a fun side project with alot of fluff and bad code. Please reach out if you have any questions, my twitter handle is on my profile.
