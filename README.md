@@ -1,4 +1,4 @@
-# WalletWatcher - A Discord Ethereum Bot
+# WalletWatcher - A Discord Bot for Tracking Eth Transactions
 
 WalletWatcher is a Discord bot designed to track and notify users about transactions related to their Ethereum addresses. Perfect for monitoring your Ethereum wallets directly from Discord.
 
